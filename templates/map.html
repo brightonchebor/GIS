@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4n4/ppG6Uq2JQ6jEF2LbcCOrqM8vfTLITeLwmZA7JQ="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-ZUrdS6LGIgiTJiQhWUQpbEQPsktjQaPSzkwanJPO1u"
+            crossorigin=""></script>
+</head>
+<body>
+    <select id="factory-select"></select>
+
+    <div id="map" style="height: 400px;"></div>
+
+    <script>
+        const factorySelect = document.getElementById('factory-select');
+        const mapContainer = document.getElementById('map');
+
+        fetch('/api/factories/')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach((factory, index) => {
+                    const option = document.createElement('option');
+                    option.value = factory.id;
+                    option.text = factory.name;
+                    factorySelect.appendChild(option);
+                });
+
+                factorySelect.addEventListener('change', () => {
+                    const factoryId = factorySelect.value;
+
+                    fetch(`/api/factories/${factoryId}/`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const location = data.location.geometry.coordinates; 
+                            const map = L.map('map').setView([location[1], location[0]], 13); 
+
+                            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                            }).addTo(map);
+
+                            L.marker([location[1], location[0]]).addTo(map)
+                                .bindPopup(data.name)
+                                .openPopup();
+                        });
+                });
+            });
+    </script>
+</body>
+</html>

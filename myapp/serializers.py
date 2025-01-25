@@ -1,10 +1,14 @@
 from rest_framework import serializers
-from .models import Factory
+from .models import Factory, Location
 
-# Serializer class which would parse json and create 
-# Factory instances in database
+class LocationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Location
+        fields = ['name', 'geometry']
+
 class FactorySerializer(serializers.ModelSerializer):
+    location = LocationSerializer()
+
     class Meta:
         model = Factory
-        fields = "__all__"
-
+        fields = ['id', 'name', 'location']
