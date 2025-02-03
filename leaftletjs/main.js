@@ -20,9 +20,7 @@ function init() {
         ]
     })
     
-    mymapp.on('zoom', function(e){
-        console.log(e.target._zoom)
-    })
+    
 
     const baseLayers = {
         'openStreetMapStandard':openStreetMapStandard,
@@ -38,4 +36,17 @@ function init() {
 
     // Marker
     const pathMarker = L.marker({lat: 48.545705491847464, lng: 12.656250000000002}).addTo(mymapp)
+
+    mymapp.locate({setView:true, maxZoom:18})
+
+    function onLocationFound(e){
+        var radius = e.accuracy.toFixed(2)
+
+        var locationMarker = L.marker(e.latlng).addTo(mymapp)
+          .bindPopup('You are within' + radius + 'meters from this point').openPopup()
+          
+        var locationCircle = L.circle(e.latlng, radius).addTo(mymapp)  
+    }
+
+    mymapp.on('locationfound', onLocationFound)
 }
