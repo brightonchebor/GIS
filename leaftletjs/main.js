@@ -17,7 +17,8 @@ function init() {
         easeLinearity: 0.5,
         layers : [
             openStreetMapStandard
-        ]
+        ],
+        enableHighAccuracy: true
     })
     
     
