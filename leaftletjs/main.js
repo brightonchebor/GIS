@@ -51,5 +51,5 @@ function init() {
     mymapp.on('locationfound', onLocationFound)
 
     mymapp.on('locationerror', onLocationError)
-     
+    
 }
