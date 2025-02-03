@@ -44,9 +44,12 @@ function init() {
 
         var locationMarker = L.marker(e.latlng).addTo(mymapp)
           .bindPopup('You are within' + radius + 'meters from this point').openPopup()
-          
+
         var locationCircle = L.circle(e.latlng, radius).addTo(mymapp)  
     }
 
     mymapp.on('locationfound', onLocationFound)
+
+    mymapp.on('locationerror', onLocationError)
+     
 }
