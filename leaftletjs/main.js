@@ -38,7 +38,7 @@ function init() {
     // Marker
     const pathMarker = L.marker({lat: 48.545705491847464, lng: 12.656250000000002}).addTo(mymapp)
 
-    mymapp.locate({setView:true, maxZoom:18})
+    mymapp.locate({setView:true, maxZoom:19})
 
     function onLocationFound(e){
         var radius = e.accuracy.toFixed(2)
@@ -52,5 +52,25 @@ function init() {
     mymapp.on('locationfound', onLocationFound)
 
     mymapp.on('locationerror', onLocationError)
+
+    const latlngs = [
+
+    ]
+
+
+    var drawPolyLine = L.polyline([], {color:red}).addTo(mymapp)
+    mymapp.on('click', function(e){
+        let latlng = e.latlng;
+        drawPolyLine.addLatlng(latlng)
+
+       
+    })
+
+    mymapp.on('dblclick', function(e){
+        let clickedAllCoordinates = drawPolyLine.getLatLngs()
+        console.log(clickedAllCoordinates)
+        let clickedAllCoordinatesExceptTheLastOne = clickedAllCoordinates.slice(0,clickedAllCoordinates - 1)
+
+    })
     
 }
