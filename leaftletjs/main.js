@@ -53,24 +53,24 @@ function init() {
 
     mymapp.on('locationerror', onLocationError)
 
-    const latlngs = [
+    // const latlngs = [
 
-    ]
+    // ]
 
 
-    var drawPolyLine = L.polyline([], {color:red}).addTo(mymapp)
-    mymapp.on('click', function(e){
-        let latlng = e.latlng;
-        drawPolyLine.addLatlng(latlng)
+    // var drawPolyLine = L.polyline([], {color:red}).addTo(mymapp)
+    // mymapp.on('click', function(e){
+    //     let latlng = e.latlng;
+    //     drawPolyLine.addLatlng(latlng)
 
        
-    })
+    // })
 
-    mymapp.on('dblclick', function(e){
-        let clickedAllCoordinates = drawPolyLine.getLatLngs()
-        console.log(clickedAllCoordinates)
-        let clickedAllCoordinatesExceptTheLastOne = clickedAllCoordinates.slice(0,clickedAllCoordinates - 1)
+    // mymapp.on('dblclick', function(e){
+    //     let clickedAllCoordinates = drawPolyLine.getLatLngs()
+    //     console.log(clickedAllCoordinates)
+    //     let clickedAllCoordinatesExceptTheLastOne = clickedAllCoordinates.slice(0,clickedAllCoordinates - 1)
 
-    })
+    // })
     
 }
