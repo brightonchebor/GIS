@@ -38,9 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django.contrib.gis',
     'myapp',
-    "django.contrib.gis",
-    "rest_framework_gis",
+    
+    
+    #"rest_framework_gis",
+    'frontend',
 ]
 
 MIDDLEWARE = [
