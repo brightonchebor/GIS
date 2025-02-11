@@ -5,7 +5,7 @@ from django.contrib.gis.gdal import DataSource
 from facilities.models import HealthFacilities
 
 
-healthfacilites_mapping = {
+healthfacilities_mapping = {
     "name": "name",
     "healthcare": "healthcare",
     "amenity": "amenity",
@@ -20,6 +20,6 @@ def import_data(verbose=True):
     facilites_layer = data_source[0].name
 
     facilites_layer_mapping = LayerMapping(
-        HealthFacilities, file, healthfacilites_mapping, layer=facilites_layer
+        HealthFacilities, file, healthfacilities_mapping, layer=facilites_layer
     )
     facilites_layer_mapping.save(strict=True, verbose=verbose)

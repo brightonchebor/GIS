@@ -11,4 +11,4 @@ class HealthFacilities(models.Model):
         indexes = [models.Index(fields=["geom"], name="geom_index")]
 
     def __str__(self):
-       return self.name
+       return self.name if self.name else 'UnnamedFacility'
