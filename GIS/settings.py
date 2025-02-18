@@ -13,7 +13,7 @@ SECRET_KEY = 'django-insecure-$w@rs(l$up07ijqe(m9lubt79m@klj!a*z2lmo+&d29a-pv4%^
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -41,7 +41,11 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+   
     'django.middleware.security.SecurityMiddleware',
+    
+     "corsheaders.middleware.CorsMiddleware",
+    
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -71,7 +75,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'GIS.wsgi.application'
 
 
-
+CORS_ALLOW_ALL_ORIGINS = True
 
 # DATABASES = {
 #     'default': {
